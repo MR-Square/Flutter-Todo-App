@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:todo_app/constants/app_colors.dart';
+import 'package:todo_app/constants/app_text_style.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,11 +16,16 @@ class _HomeScreenState extends State<HomeScreen> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       // backgroundColor: const Color.fromARGB(104, 47, 47, 47),
-      backgroundColor: AppColors.black,
+      backgroundColor: const Color.fromARGB(225, 242, 211, 211),
       appBar: AppBar(
-        title: const Text('ToDo App'),
+        title: Text(
+          'ToDo App',
+          style: AppTextStyle.regularWhite22.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.blue[100],
+        backgroundColor: AppColors.primary,
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
