@@ -67,7 +67,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  // MEDIUM BLACK STYLES::
+  // MEDIUM BLACK STYLES:
   static TextStyle mediumBlack8 = GoogleFonts.poppins(
     fontSize: AppDimens.fontSizeA8,
     color: AppColors.black,
@@ -265,6 +265,133 @@ class AppTextStyle {
     fontSize: AppDimens.fontSizeA30,
     color: AppColors.white,
     fontWeight: FontWeight.w400,
+  );
+
+
+  // MEDIUM WHITE STYLES:
+  static TextStyle mediumWhite8 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA8,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle mediumWhite10 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA10,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite12 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA12,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite14 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA14,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite16 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA16,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite18 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA18,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite20 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA20,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite22 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA22,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite24 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA24,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite26 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA26,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite28 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA28,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle mediumWhite30 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA30,
+    color: AppColors.white,
+    fontWeight: FontWeight.w500,
+  );
+
+  // BOLD WHITE STYLES::
+  static TextStyle boldWhite8 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA8,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+
+  static TextStyle boldWhite10 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA10,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite12 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA12,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite14 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA14,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite16 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA16,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite18 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA18,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite20 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA20,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite22 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA22,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite24 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA24,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite26 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA26,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite28 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA28,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle boldWhite30 = GoogleFonts.poppins(
+    fontSize: AppDimens.fontSizeA30,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
   );
 
   // REGULAR GREY STYLES:
@@ -614,11 +741,6 @@ class AppTextStyle {
   static TextStyle mediumPrimary16 = GoogleFonts.poppins(
     fontSize: AppDimens.fontSizeA16,
     color: AppColors.primary,
-    fontWeight: FontWeight.w500,
-  );
-  static TextStyle mediumWhite16 = GoogleFonts.poppins(
-    fontSize: AppDimens.fontSizeA16,
-    color: const Color.fromARGB(255, 251, 251, 252),
     fontWeight: FontWeight.w500,
   );
 
