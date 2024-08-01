@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/constants/app_colors.dart';
 import 'package:todo_app/constants/app_text_style.dart';
 import 'package:todo_app/widgets/buttons/add_button.dart';
+import 'package:todo_app/widgets/cards/task_card.dart';
 import 'package:todo_app/widgets/textfields/text_input_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,10 +13,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<Map> taskList = [
+    {
+      'id': 1,
+      'title': 'This is my first task',
+      'isCompleted': false,
+    },
+    {
+      'id': 2,
+      'title': 'Task 2',
+      'isCompleted': false,
+    },
+    {
+      'id': 3,
+      'title': 'Task 3',
+      'isCompleted': false,
+    },
+  ];
   void showTaskAddedMessage() {
     const snackBar = SnackBar(
       content: Text('Task added successfully!'),
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 800),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -106,7 +124,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPress: showTaskAddedMessage,
                 ),
               ],
-            )
+            ),
+
+            SizedBox(
+              height: height * 0.02,
+            ),
+            // Rendering list of tasks
+            Flexible(
+              child: ListView.builder(
+                itemCount: taskList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return TaskCard(
+                    btnVal: index,
+                    title: taskList[index]['title'],
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
