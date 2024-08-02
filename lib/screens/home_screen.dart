@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants/app_colors.dart';
 import 'package:todo_app/constants/app_text_style.dart';
+import 'package:todo_app/data/tasks.dart';
 import 'package:todo_app/widgets/buttons/add_button.dart';
 import 'package:todo_app/widgets/cards/task_card.dart';
 import 'package:todo_app/widgets/textfields/text_input_widget.dart';
@@ -13,23 +14,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map> taskList = [
-    {
-      'id': 1,
-      'title': 'This is my first task',
-      'isCompleted': false,
-    },
-    {
-      'id': 2,
-      'title': 'Task 2',
-      'isCompleted': false,
-    },
-    {
-      'id': 3,
-      'title': 'Task 3',
-      'isCompleted': false,
-    },
-  ];
+  int completedTasks = 0;
+  Color? statusCircleColor = AppColors.secondary;
+  String statusSubtitle = "Keep it up";
+
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < tasksList.length; i++) {
+      if (tasksList[i]['isCompleted'] == true) {
+        completedTasks++;
+      }
+    }
+  }
+
+  updateTaskStatus(bool taskStatus) {
+    if (taskStatus) {
+      completedTasks++;
+    } else {
+      completedTasks--;
+    }
+    if (completedTasks == tasksList.length) {
+      statusCircleColor = AppColors.darkGreen;
+      statusSubtitle = "Well Done!";
+    } else if (completedTasks == 0) {
+      statusCircleColor = AppColors.attdRed;
+      statusSubtitle = "Poor Performance";
+    } else {
+      statusCircleColor = AppColors.secondary;
+      statusSubtitle = "Keep it up";
+    }
+    setState(() {});
+  }
+
   void showTaskAddedMessage() {
     const snackBar = SnackBar(
       content: Text('Task added successfully!'),
@@ -49,9 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           'ToDo App',
-          style: AppTextStyle.regularWhite22.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppTextStyle.boldWhite26,
         ),
         centerTitle: true,
         backgroundColor: AppColors.primary,
@@ -87,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: AppTextStyle.boldBlack24,
                       ),
                       Text(
-                        'Keep it up',
+                        statusSubtitle,
                         // style: TextStyle(
                         //     // color: Colors.white,
                         //     ),
@@ -99,13 +114,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: width * 0.33,
                     height: height * 0.15,
                     decoration: BoxDecoration(
-                      border: Border.all(strokeAlign: 1),
+                      // border: Border.all(strokeAlign: 1),
                       borderRadius: BorderRadius.circular(100),
-                      color: Colors.deepOrange,
+                      // color: AppColors.secondary,
+                      color: statusCircleColor,
                     ),
                     child: Center(
                       child: Text(
-                        "3/5",
+                        "$completedTasks/${tasksList.length}",
                         style: AppTextStyle.boldWhite30,
                       ),
                     ),
@@ -132,11 +148,13 @@ class _HomeScreenState extends State<HomeScreen> {
             // Rendering list of tasks
             Flexible(
               child: ListView.builder(
-                itemCount: taskList.length,
+                itemCount: tasksList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return TaskCard(
-                    btnVal: index,
-                    title: taskList[index]['title'],
+                    taskId: tasksList[index]['id'],
+                    isCompleted: tasksList[index]['isCompleted'],
+                    title: tasksList[index]['title'],
+                    updateTaskStatus: updateTaskStatus,
                   );
                 },
               ),

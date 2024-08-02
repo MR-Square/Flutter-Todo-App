@@ -7,32 +7,35 @@ import 'package:todo_app/constants/app_text_style.dart';
 class TaskCard extends StatefulWidget {
   const TaskCard({
     super.key,
-    required this.btnVal,
+    required this.taskId,
     required this.title,
+    required this.isCompleted,
+    required this.updateTaskStatus,
   });
 
-  final int btnVal;
+  final int taskId;
   final String title;
+  final bool isCompleted;
+  final Function(bool taskStatus) updateTaskStatus;
 
   @override
   State<TaskCard> createState() => _TaskCardState();
 }
 
 class _TaskCardState extends State<TaskCard> {
-  int selectedBtn = 1;
-  // Function to return true or false based on selection
-  // bool _isOptionSelected(int value) {
-  //   return selectedBtn == value;
-  // }
+  bool isCompleted = false;
+
+  @override
+  void initState() {
+    isCompleted = widget.isCompleted;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    // return Card(
-    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-    //   child: const Text("This is a task card"),
-    // );
+
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       padding: const EdgeInsets.all(10),
@@ -45,9 +48,9 @@ class _TaskCardState extends State<TaskCard> {
         borderRadius: BorderRadius.circular(10),
         boxShadow: const [
           BoxShadow(
-            blurRadius: 2,
+            blurRadius: 1,
             color: AppColors.cardColor,
-            spreadRadius: 2,
+            spreadRadius: 1,
             offset: Offset(1, 2),
           ),
         ],
@@ -57,17 +60,31 @@ class _TaskCardState extends State<TaskCard> {
           GestureDetector(
             onTap: () {
               print("button is clicked");
+              print(widget.taskId);
+              setState(() {
+                isCompleted = !isCompleted;
+                widget.updateTaskStatus(isCompleted);
+              });
             },
             child: Container(
               width: width * 0.07,
               height: width * 0.07,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  strokeAlign: 1,
-                  color: AppColors.attdRed,
-                ),
-                borderRadius: BorderRadius.circular(100),
-              ),
+              decoration: isCompleted
+                  ? BoxDecoration(
+                      color: AppColors.darkGreen,
+                      border: Border.all(
+                        strokeAlign: 1,
+                        color: AppColors.darkGreen,
+                      ),
+                      borderRadius: BorderRadius.circular(100),
+                    )
+                  : BoxDecoration(
+                      border: Border.all(
+                        strokeAlign: 1,
+                        color: AppColors.attdRed,
+                      ),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
             ),
           ),
           SizedBox(
@@ -78,7 +95,12 @@ class _TaskCardState extends State<TaskCard> {
             child: Text(
               overflow: TextOverflow.ellipsis,
               widget.title,
-              style: AppTextStyle.boldBlack20,
+              style: isCompleted
+                  ? AppTextStyle.boldBlack20.copyWith(
+                      decoration: TextDecoration.lineThrough,
+                      color: AppColors.lightGrey,
+                    )
+                  : AppTextStyle.boldBlack20,
             ),
           ),
           // const Spacer(),

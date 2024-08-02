@@ -14,7 +14,8 @@ class TextInputWidget extends StatelessWidget {
     return Container(
       width: width * 0.7,
       height: height * 0.055,
-      padding: const EdgeInsets.fromLTRB(20, 15, 15, 15),
+      // padding: const EdgeInsets.fromLTRB(20, 15, 15, 1),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         color: AppColors.lightGrey.withOpacity(0.1),
         border: Border.all(color: AppColors.lightGrey),
@@ -23,8 +24,10 @@ class TextInputWidget extends StatelessWidget {
       child: TextField(
         keyboardType: TextInputType.text,
         maxLength: 20,
+        textAlignVertical: TextAlignVertical.top,
         style: AppTextStyle.mediumPrimary18,
         decoration: InputDecoration(
+          hintText: "Write your task",
           counterText: "",
           border: InputBorder.none,
         ),
