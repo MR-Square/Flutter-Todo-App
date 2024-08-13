@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:todo_app/constants/api_handler.dart';
 import 'package:todo_app/constants/app_colors.dart';
 import 'package:todo_app/constants/app_text_style.dart';
 import 'package:todo_app/data/tasks.dart';
+import 'package:todo_app/models/task.dart';
 import 'package:todo_app/widgets/buttons/add_button.dart';
 import 'package:todo_app/widgets/cards/task_card.dart';
 import 'package:todo_app/widgets/textfields/text_input_widget.dart';
@@ -17,15 +21,25 @@ class _HomeScreenState extends State<HomeScreen> {
   int completedTasks = 0;
   Color? statusCircleColor = AppColors.secondary;
   String statusSubtitle = "Keep it up";
+  late List<Task> data = [];
+  ApiHandler apiHandler = ApiHandler();
 
   @override
   void initState() {
     super.initState();
+    print("data before api call: data => $data");
+    getData();
+    print("data after api call: data => $data");
     for (int i = 0; i < tasksList.length; i++) {
       if (tasksList[i]['isCompleted'] == true) {
         completedTasks++;
       }
     }
+  }
+
+  void getData() async {
+    data = await apiHandler.getTaskData();
+    setState(() {});
   }
 
   updateTaskStatus(bool taskStatus) {
