@@ -5,7 +5,12 @@ import 'package:todo_app/constants/app_colors.dart';
 import 'package:todo_app/constants/app_text_style.dart';
 
 class TextInputWidget extends StatelessWidget {
-  const TextInputWidget({super.key});
+  const TextInputWidget({
+    super.key,
+    required this.inputController,
+  });
+
+  final TextEditingController inputController;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,7 @@ class TextInputWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextField(
+        controller: inputController,
         keyboardType: TextInputType.text,
         maxLength: 20,
         textAlignVertical: TextAlignVertical.top,

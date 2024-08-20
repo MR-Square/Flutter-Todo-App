@@ -59,7 +59,6 @@ class _TaskCardState extends State<TaskCard> {
         children: [
           GestureDetector(
             onTap: () {
-              print("button is clicked");
               print(widget.taskId);
               setState(() {
                 isCompleted = !isCompleted;

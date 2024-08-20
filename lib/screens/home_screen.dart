@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants/api_handler.dart';
 import 'package:todo_app/constants/app_colors.dart';
@@ -22,23 +24,37 @@ class _HomeScreenState extends State<HomeScreen> {
   Color? statusCircleColor = AppColors.secondary;
   String statusSubtitle = "Keep it up";
   late List<Task> data = [];
+  late List<Task> data1 = [];
   ApiHandler apiHandler = ApiHandler();
+  TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    print("data before api call: data => $data");
     getData();
-    print("data after api call: data => $data");
-    for (int i = 0; i < tasksList.length; i++) {
-      if (tasksList[i]['isCompleted'] == true) {
-        completedTasks++;
-      }
-    }
   }
 
   void getData() async {
     data = await apiHandler.getTaskData();
+    setState(() {});
+  }
+
+  addTask() async {
+    var responseJson;
+    if (controller.text == "") {
+      print("enter a task");
+    } else {
+      final task = Task(
+        id: 0,
+        taskName: controller.text,
+        isCompleted: false,
+        isCanceled: false,
+      );
+
+      var response = await apiHandler.addTask(task: task);
+      responseJson = json.decode(response.body);
+    }
+    if (!mounted) return;
     setState(() {});
   }
 
@@ -135,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "$completedTasks/${tasksList.length}",
+                        "$completedTasks/${data.length}",
                         style: AppTextStyle.boldWhite30,
                       ),
                     ),
@@ -149,9 +165,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const TextInputWidget(),
+                TextInputWidget(
+                  inputController: controller,
+                ),
                 AddButton(
-                  onPress: showTaskAddedMessage,
+                  // onPress: showTaskAddedMessage,
+                  onPress: addTask,
                 ),
               ],
             ),
@@ -162,12 +181,12 @@ class _HomeScreenState extends State<HomeScreen> {
             // Rendering list of tasks
             Flexible(
               child: ListView.builder(
-                itemCount: tasksList.length,
+                itemCount: data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return TaskCard(
-                    taskId: tasksList[index]['id'],
-                    isCompleted: tasksList[index]['isCompleted'],
-                    title: tasksList[index]['title'],
+                    taskId: data[index].id,
+                    isCompleted: data[index].isCompleted!,
+                    title: data[index].taskName,
                     updateTaskStatus: updateTaskStatus,
                   );
                 },

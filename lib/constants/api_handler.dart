@@ -6,7 +6,7 @@ import 'package:todo_app/models/task.dart';
 import 'package:http/http.dart' as http;
 
 class ApiHandler {
-  final String baseUri = "https://192.168.0.194/api/tasks";
+  final String baseUri = "https://localhost:7099/tasks";
 
   // Method to get data from database.
   Future<List<Task>> getTaskData() async {
